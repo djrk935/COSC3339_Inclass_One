@@ -56,8 +56,13 @@ def calculate_shipping_cost(weight, destination):
 
 
 # This method uses funky logic. Rewrite it using different loop structures
+CURVE_MULTIPLIER = 1.05
+
 def curve_scores(scores):
-    return list(map(lambda x: min(x + 5, 100), scores))
+    curved = []
+    for score in scores:
+        curved.append(min(score * CURVE_MULTIPLIER, 100))
+    return curved
 
 
 # For scenario three change the name of this method.
