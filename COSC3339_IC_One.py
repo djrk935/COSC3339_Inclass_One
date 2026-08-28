@@ -15,120 +15,120 @@ import random
 
 # This method contains a bug. In your commit note, state the bug and how you fixed it
 def calculate_hypotenuse(side_a, side_b):
-    result = ((side_a * side_a) + (side_b * side_b)) ** 0.5
-    return result
+  result = ((side_a * side_a) + (side_b * side_b)) ** 0.5
+  return result
 
 # This method contains a bug. In your commit note, state the bug and how you fixed it
 def count_words(sentence):
-    if len(sentence) == 0:
-        return 0
-    words = sentence.split()  
-    return len(words)
+  if len(sentence) == 0:
+    return 0
+  words = sentence.split()  
+  return len(words)
 
 
 # This method is long to allow for non-overlapping edits.
 def calculate_shipping_cost(weight, destination):
-    cost = 1.5  # flat handling fee applied to every shipment
-    
-    if destination == "US":
-        base_cost = 6.0
-        if weight <= 12:
-            cost = cost + base_cost
-        else:
-            # Over 12 lbs, add $1.25 per extra lb
-            extra_weight = weight - 12
-            cost = cost + base_cost + (extra_weight * 1.25)
-            
-    elif destination == "International":
-        base_cost = 15.0
-        if weight <= 5:
-            cost = base_cost
-        else:
-            # Over 5 lbs, add $4.50 per extra lb
-            extra_weight = weight - 5
-            cost = base_cost + (extra_weight * 4.5)
-            
+  cost = 1.5  # flat handling fee applied to every shipment
+  
+  if destination == "US":
+    base_cost = 6.0
+    if weight <= 12:
+      cost = cost + base_cost
     else:
-        # Unknown destination, cannot ship there
-        print(f"Error: '{destination}' is not a valid destination")
-        return None
+      # Over 12 lbs, add $1.25 per extra lb
+      extra_weight = weight - 12
+      cost = cost + base_cost + (extra_weight * 1.25)
+      
+  elif destination == "International":
+    base_cost = 15.0
+    if weight <= 5:
+      cost = base_cost
+    else:
+      # Over 5 lbs, add $4.50 per extra lb
+      extra_weight = weight - 5
+      cost = base_cost + (extra_weight * 4.5)
+      
+  else:
+    # Unknown destination, cannot ship there
+    print(f"Error: '{destination}' is not a valid destination")
+    return None
 
-    return round(cost, 2)
+  return round(cost, 2)
 
 
 # This method uses funky logic. Rewrite it using different loop structures
 CURVE_MULTIPLIER = 1.05
 
 def curve_scores(scores):
-    curved = []
-    for score in scores:
-        curved.append(min(score * CURVE_MULTIPLIER, 100))
-    return curved
+  curved = []
+  for score in scores:
+    curved.append(min(score * CURVE_MULTIPLIER, 100))
+  return curved
 
 
 # For scenario three change the name of this method.
 # For scenario five fix the typos
 def check_user_text(text_value):
 
-    valud_imput = True 
+  valud_imput = True 
+  
+  if text_value is None:
+    valud_imput = False
+  
+  if text_value == "":
+    valud_imput = False
     
-    if text_value is None:
-        valud_imput = False
-    
-    if text_value == "":
-        valud_imput = False
-        
-    return valud_imput
+  return valud_imput
 
 
 # Processes user data after checking it with the helper
 def process_user_data(user_data):
-    if check_user_text(user_data):
-        print(f"Processing: {user_data}")
-        return True
-    return False
+  if check_user_text(user_data):
+    print(f"Processing: {user_data}")
+    return True
+  return False
 
 
 def main():
-    print("--- STARTING TESTS ---")
+  print("--- STARTING TESTS ---")
 
-    # TEST A: Hypotenuse
-    print(f"Test A1 (0, 5): {calculate_hypotenuse(0, 5)} (Expected: 5.0)") 
-    print(f"Test A2 (3, 4): {calculate_hypotenuse(3, 4)} (Expected: 5.0)") 
+  # TEST A: Hypotenuse
+  print(f"Test A1 (0, 5): {calculate_hypotenuse(0, 5)} (Expected: 5.0)") 
+  print(f"Test A2 (3, 4): {calculate_hypotenuse(3, 4)} (Expected: 5.0)") 
 
-    print("-" * 20)
+  print("-" * 20)
 
-    # TEST B: Word Count
-    print(f"Test B1 ('hello, world'): {count_words('hello, world')} (Expected: 2)")
-    print(f"Test B2 ('hello world'): {count_words('hello world')} (Expected: 2)")
+  # TEST B: Word Count
+  print(f"Test B1 ('hello, world'): {count_words('hello, world')} (Expected: 2)")
+  print(f"Test B2 ('hello world'): {count_words('hello world')} (Expected: 2)")
 
-    print("-" * 20)
+  print("-" * 20)
 
-    # TEST C: Shipping
-    print(f"Test C1 (US, 5lbs): ${calculate_shipping_cost(5, 'US')}")
-    print(f"Test C2 (Intl, 6lbs): ${calculate_shipping_cost(6, 'International')}")
+  # TEST C: Shipping
+  print(f"Test C1 (US, 5lbs): ${calculate_shipping_cost(5, 'US')}")
+  print(f"Test C2 (Intl, 6lbs): ${calculate_shipping_cost(6, 'International')}")
 
-    print("-" * 20)
+  print("-" * 20)
 
-    # TEST D: Curve
-    original_scores = [80, 98, 40, 12, 110, 75]
-    print(f"Test D (Original): {original_scores}")
-    print(f"Test D (Curved):   {curve_scores(original_scores)}")
+  # TEST D: Curve
+  original_scores = [80, 98, 40, 12, 110, 75]
+  print(f"Test D (Original): {original_scores}")
+  print(f"Test D (Curved):   {curve_scores(original_scores)}")
 
-    print("-" * 20)
+  print("-" * 20)
 
-    # SCENARIO 3 TEST BLOCK
-    # INSTRUCTIONS: 
-    # In 'Change Six', you will uncomment the lines below and write 
-    # a new function called 'process_user_data' that uses the helper.
-    
-    print("--- SCENARIO 3 TEST ---")
-    user_input = "This is some fake user data"
-    if process_user_data(user_input):
-        print("Data processed successfully")
-    else:
-        print("Data invalid")
-    
-    print("\n--- END OF TESTS ---")
+  # SCENARIO 3 TEST BLOCK
+  # INSTRUCTIONS: 
+  # In 'Change Six', you will uncomment the lines below and write 
+  # a new function called 'process_user_data' that uses the helper.
+  
+  print("--- SCENARIO 3 TEST ---")
+  user_input = "This is some fake user data"
+  if process_user_data(user_input):
+    print("Data processed successfully")
+  else:
+    print("Data invalid")
+  
+  print("\n--- END OF TESTS ---")
 
 main()
